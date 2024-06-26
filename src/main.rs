@@ -10,5 +10,5 @@ fn main() {
 
     let symbols = parser.parse(&input);
 
-    println!("Got symbols: {:?}", symbols);
+    println!("Got symbols: {symbols:?}");
 }

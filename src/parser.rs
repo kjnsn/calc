@@ -132,9 +132,9 @@ mod tests {
         let parser = Parser::new();
 
         let expected: Vec<Symbol> = vec![
-            Symbol::Quantity(12884901888),
+            Symbol::Quantity(12_884_901_888),
             Symbol::Operator(OperatorKind::Add),
-            Symbol::Quantity(14680064),
+            Symbol::Quantity(14_680_064),
             Symbol::Operator(OperatorKind::Multiply),
             Symbol::Number(2),
         ];
