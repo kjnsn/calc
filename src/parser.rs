@@ -29,7 +29,7 @@ impl Parser {
     pub fn new() -> Parser {
         Parser {
             number_regex: Regex::new(r"^(\d+)").unwrap(),
-            quantity_regex: Regex::new(r"^(?<quantity>\d+)\s*(?<unit>(?:M|G|T|P)?i?(?:b|B))")
+            quantity_regex: Regex::new(r"^(?<quantity>\d+)\s*(?<unit>(?:K|M|G|T|P)?i?(?:b|B))")
                 .unwrap(),
         }
     }
@@ -102,6 +102,7 @@ impl Parser {
             "TiB" => quantity * u64::pow(2, 40),
             "GiB" => quantity * u64::pow(2, 30),
             "MiB" => quantity * u64::pow(2, 20),
+            "KiB" => quantity * u64::pow(2, 10),
             // No conversion for bytes or unknown values.
             _ => quantity,
         }
