@@ -37,3 +37,17 @@ fn format_quantity(quantity: u64) -> String {
 
     format!("{rounded_quantity:.2} {suffix}")
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn format_quantity_kib() {
+        assert_eq!("10.00 KiB", format_quantity(1_024 * 10));
+
+        assert_eq!("220.29 KiB", format_quantity(1_834 * 123));
+
+        assert_eq!("18.35 MiB", format_quantity(1_924 * 100 * 100));
+    }
+}
