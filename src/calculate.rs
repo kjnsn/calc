@@ -8,7 +8,7 @@ pub fn calculate(input: Vec<Symbol>) -> Result<u64, &'static str> {
         match symbol {
             Symbol::Quantity(quantity) => match last_operator {
                 Some(op) => {
-                    result = apply_op(op, result, quantity);
+                    result = apply_op(&op, result, quantity);
                     last_operator = None;
                 }
                 None => {
@@ -17,7 +17,7 @@ pub fn calculate(input: Vec<Symbol>) -> Result<u64, &'static str> {
             },
             Symbol::Number(number) => match last_operator {
                 Some(op) => {
-                    result = apply_op(op, result, number);
+                    result = apply_op(&op, result, number);
                     last_operator = None;
                 }
                 None => {
@@ -37,7 +37,7 @@ pub fn calculate(input: Vec<Symbol>) -> Result<u64, &'static str> {
     Ok(result)
 }
 
-fn apply_op(op: OperatorKind, a: u64, b: u64) -> u64 {
+fn apply_op(op: &OperatorKind, a: u64, b: u64) -> u64 {
     match op {
         OperatorKind::Add => a + b,
         OperatorKind::Subtract => a - b,
