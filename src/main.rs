@@ -3,11 +3,15 @@ mod format;
 mod parser;
 
 use calculate::calculate;
-use itertools::Itertools;
 use parser::Parser;
 
 fn main() {
-    let input: String = std::env::args().skip(1).join(" ");
+    let input = std::env::args().skip(1).fold(String::new(), |mut acc, e| {
+        acc.push(' ');
+        acc.push_str(&e);
+
+        acc
+    });
 
     let parser = Parser::new();
 

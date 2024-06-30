@@ -2,7 +2,7 @@ use std::vec;
 
 use regex::Regex;
 
-#[derive(Debug, PartialEq)]
+#[derive(Debug, PartialEq, Copy, Clone)]
 pub enum OperatorKind {
     Add,
     Subtract,
@@ -10,7 +10,7 @@ pub enum OperatorKind {
     Divide,
 }
 
-#[derive(Debug, PartialEq)]
+#[derive(Debug, PartialEq, Copy, Clone)]
 pub enum Symbol {
     /// Some quantity of bytes.
     Quantity(u64),
