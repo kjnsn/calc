@@ -17,7 +17,7 @@ fn main() {
 
     let symbols = parser.parse(&input);
 
-    match calculate(symbols) {
+    match calculate(&symbols) {
         Ok(quantity) => {
             let formatted = format::pretty_quantity(quantity);
             println!("{formatted}");
