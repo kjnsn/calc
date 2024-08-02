@@ -45,31 +45,20 @@ impl Unit {
 
 /// Determines the best unit to use for the given quantity.
 pub fn best_unit(quantity: u64) -> Unit {
-    if (quantity >> 10) == 0 {
-        return Unit::Byte;
-    }
+    const K: u64 = 2u64.pow(10);
+    const M: u64 = 2u64.pow(20);
+    const G: u64 = 2u64.pow(30);
+    const T: u64 = 2u64.pow(40);
+    const P: u64 = 2u64.pow(50);
 
-    if (quantity >> 20) == 0 {
-        return Unit::KiB;
+    match quantity {
+        ..K => Unit::Byte,
+        K..M => Unit::KiB,
+        M..G => Unit::MiB,
+        G..T => Unit::GiB,
+        T..P => Unit::TiB,
+        P.. => Unit::PiB,
     }
-
-    if (quantity >> 30) == 0 {
-        return Unit::MiB;
-    }
-
-    if (quantity >> 40) == 0 {
-        return Unit::GiB;
-    }
-
-    if (quantity >> 50) == 0 {
-        return Unit::TiB;
-    }
-
-    if (quantity >> 60) == 0 {
-        return Unit::PiB;
-    }
-
-    Unit::Byte
 }
 
 pub fn pretty_quantity(quantity: u64) -> String {

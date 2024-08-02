@@ -1,5 +1,5 @@
 use regex::Regex;
-use std::vec;
+use std::{sync::LazyLock, vec};
 
 #[derive(Debug, PartialEq)]
 pub enum OperatorKind {
@@ -24,8 +24,10 @@ pub struct Parser {
     quantity_regex: Regex,
 }
 
+pub static PARSER: LazyLock<Parser> = LazyLock::new(Parser::new);
+
 impl Parser {
-    pub fn new() -> Parser {
+    fn new() -> Parser {
         Parser {
             number_regex: Regex::new(r"^(\d+)").unwrap(),
             quantity_regex: Regex::new(r"^(?<quantity>\d+)\s*(?<unit>(?:K|M|G|T|P)?i?(?:b|B))")

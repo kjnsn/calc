@@ -3,7 +3,7 @@ mod format;
 mod parser;
 
 use calculate::calculate;
-use parser::Parser;
+use parser::PARSER;
 
 fn main() {
     let input = std::env::args().skip(1).fold(String::new(), |mut acc, e| {
@@ -13,9 +13,7 @@ fn main() {
         acc
     });
 
-    let parser = Parser::new();
-
-    let symbols = parser.parse(&input);
+    let symbols = PARSER.parse(&input);
 
     match calculate(&symbols) {
         Ok(quantity) => {
